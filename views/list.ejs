@@ -1,0 +1,27 @@
+<!--                            Aula 360 Listagem e preparando busca 
+                                Aula 361 Sistema de Busca -->
+
+
+<h3>Consultas: </h3>
+<hr>
+
+<!--(1-360) CRIANDO UM FORMULÁRIO DE BUSCA-->
+<!--(3-361) VOU PASSAR NA ACTION A ROTA /searchresult (ARQ index.js 21-361) O MÉTODO VAI SER GET. DIFERENTE
+DAS OUTRAS ROTAS QUE EU CRIEI QUE FOI POST-->
+<form action="/searchresult" method="get">
+    <input type="search" name="search" id="search" placeholder="Digite o e-mail ou o CPF do cliente">
+    <button>Pesquisar</button>
+</form>
+
+<!-- (2-360) ESTOU FAZENDO UM FOR EACH, VOU PEGAR O ARRAY CHAMADO APPOS (ARQUIVO index. (19-360))
+PARA CADA APPO DENTRO DO ARRAYS DE 'APPOS' OU SEJA, PARA CADA CONSULTA, DENTRO DO ARRAYS DE CONSULTAS, VOU EXECUTAR A 
+ESSA FUNÇÃO-->
+
+<% appos.forEach(appo => { %>
+    <h1>Consulta: <%= appo.description %></h1>
+    <hr>
+    <h4>Paciente: <%= appo.name %></h4>
+    <h4>Email: <%= appo.email %></h4>
+    <h4>CPF: <%= appo.cpf %></h4>
+    <hr>
+<% }) %>

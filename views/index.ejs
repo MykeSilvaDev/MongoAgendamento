@@ -1,0 +1,45 @@
+<!--                                Aula 353 Setup do full calendar 20/07/23
+                                    Aula 356 Exibindo consultas no full calendar 24/07/23
+                                    Aula 357 Detecção de cliques no FullCalendar 24/07/23-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <link rel="stylesheet" href="main.css">
+    <!--IMPORTANDO SCRIPT DO FULL CALENDAR-->
+    <script src="main.js"></script>
+</head>
+<body>
+
+<!--(1-353)-->
+    <div id="calendar"></div>
+
+</body>
+<!--(2-353)-->
+<script>
+    /*ESTOU PEGANDO O ELEMENTO PELO ID (/*(1-353) E INSERINDO DENTRO DESSA VARIÁVEL*/
+    var element = document.getElementById("calendar");
+    var calendar = new FullCalendar.Calendar(element,{
+        /*TIPOS DE CALENDÁRIOS QUE EU POSSO COLOCAR*/
+        initialView: 'dayGridMonth',
+        locale: 'pt-br',
+/*(4-356) IRÁ FAZER UMA CONSULTA PARA A ROTA GET CALENDAR E MOSTRAR AS CONSULTAS */
+        events: 'getcalendar',
+/*(5-357) É UMA FUNÇÃO DE CALLBACK QUE VAI SER CHAMADA QUANDO EU CLICAR EM CIMA DE UM EVENTO */
+        eventClick: function(info){
+            //console.log("Olá Mundo!");
+            //console.log(info.event);
+            //console.log(info.event.title);
+/*EU QUERO PEGAR ESSE CLIQUE E MANDAR PARA A OUTRA PÁGINA, A PESSOA CLICA E ELA VAI NA PÁGINA ESPECÍFICA DAQUELE EVENTO
+PARA ISSO VOU CHAMAR O OBJETO WINDOW*/
+            window.location.href = '/event/'+info.event.id;
+        }
+    });
+
+/*(3-353) QUERO QUE O CALENDÁRIO SEJA DESENHADO*/
+    calendar.render();
+</script>
+
+</html>

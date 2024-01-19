@@ -1,0 +1,32 @@
+
+
+<h1>Consulta: <%= appo.description %></h1>
+<hr>
+<h4>Paciente: <%= appo.name %></h4>
+<h4>Email: <%= appo.email %></h4>
+<h4>CPF: <%= appo.cpf %></h4>
+<hr>
+
+<!-- (1-359) SÓ VOU EXIBIR ESSE BOTÃO DE FINZALIZAR CONSULTA SE O appo.finished SEJA DIFERENTE, CASO A CONSULTA
+NÃO ESTEJA FINZALIZADA AINDA, EU EXIBO O BOTÃO -->
+<% if(!appo.finished){ %>
+<!--(2-359) A ROTA QUE EU QUERO MANDAR OS DADOS É A ROTA FINISHED-->
+    <form action="/finish" method="post">                 
+<!-- VOU COLOCAR UM CAMPO  ESCONDIDO QUE VAI RECEBER COMO VALOR (value) O ID DAQUELA CONSULTA QUE TEM NAQUELA PÁGINA
+A ROTA QUE EU QUERO PEGAR O ID É (http://localhost:8080/event/64b50ef45faa0d6c771bb890)  -->
+<!-- QUANDO EU CLICAR NO BOTÃO FINALIZAR CONSULTA, VAI ENVIAR O FORMULÁRIO PARA A ROTA finish (ARQUIVO index.js (18-359))
+E NESSA ROTA EU CAPTURO O ID E CHAMO O SERVICE-->
+        <input type="hidden" name="id" value="<%= appo.id %>"> 
+        <button>Finalizar Consulta</button>
+    </form>
+   
+<% } %>
+
+
+<!--ASSIM QUE O MÉDICO FINALIZAR UMA CONSULTA COM O PACIENTE (O EVENTO) ELE CLICA EM FINALIZAR A CONSULTA 
+E ESSA CONSULTA VAI SUMIR NO CALENDÁRIO-
+
+
+http://localhost:8080/event/64bdec48db880262f0f90513
+
+->
